@@ -10,7 +10,7 @@ const ImageBanner = ({src, title} : {src : string, title : string}) => {
         }, 3000);
     };
     return (
-        <div className="relative px-[30px]">
+        <div className="relative lg:px-[30px]">
         <img className='lg:w-[790px] lg:h-[500px] w-full h-auto ' src={src} />
         <div className="flex justify-between mt-2">
             <p className="font-semibold text-[16px]">{title}</p>
