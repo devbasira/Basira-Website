@@ -58,12 +58,14 @@ export default function PortfolioLayout() {
     return (
         <div className="grid lg:grid-cols-4 lg:w-[1288px] h-screen">
             <div className="p-[30px] lg:pr-[30px] pr-[60px] bg-white col-span-1 lg:overflow-y-auto lg:items-start lg:w-[350px] w-screen lg:h-screen flex flex-col justify-between h-[90vh]">
+            <div className='w-[75px] h-[75px] rounded-full bg-[#2226bc]' />
                 <div className="space-y-[15px]">
                     <h2 className="text-[24px] font-bold">&quot;Make things easy for the people,...&quot;</h2>
                     <p className="mt-4 font-light text-[16px] text-[#666666]">
                         At Basira Studio, we believe in the power of thoughtful design to transform everyday experiences. Our vision is to create intuitive, uplifting, and inclusive solutions that make life simpler and more joyful.
                     </p>
                 </div>
+                <div className='bg-gray-300 lg:w-72 w-full h-[1px]' />
                 <div className="bg-white w-full">
                     <h4 className='text-[#666666] font-extralight'>#buildingInPublic</h4>
                     <h2 className="text-[16px] font-bold text-[#2226bc] mb-4">
@@ -85,7 +87,7 @@ export default function PortfolioLayout() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="lg:ml-0 ml-5 w-[55px] h-[55px] text-white bg-[#0033A0] hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-5 text-center items-center"
+                                className="lg:ml-0 ml-5 w-[55px] h-[55px] text-white bg-[#2226bc] hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-5 text-center items-center"
                             >
                                 {loading ? (
                                     <svg
@@ -146,9 +148,9 @@ export default function PortfolioLayout() {
             </div>
             <div className="lg:overflow-y-auto no-scrollbar flex flex-col items-center col-span-3 p-[30px]">
                 <div className="space-y-[40px]">
-                    <ImageBanner src='/MacBook_.jpg' title='Ivan' />
+                    <ImageBanner src='/MacBook_.jpg' title='Funoon' />
                     <ImageBanner src='/Sustenance_tote.jpg' title='Sustenance' />
-                    <ImageBanner src='/ILCS_.jpg' title='ETS Contracts' />
+                    <ImageBanner src='/ILCS_.jpg' title='ILCS' />
                 </div>
             </div>
         </div>
