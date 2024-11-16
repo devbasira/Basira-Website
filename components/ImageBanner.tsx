@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from "framer-motion";
-const ImageBanner = ({src, title} : {src : any, title : string}) => {
+const ImageBanner = ({src, title} : {src : string, title : string}) => {
     const [visibleTooltip, setVisibleTooltip] = useState<string | null>(null);
 
     const handleClick = (id: string) => {

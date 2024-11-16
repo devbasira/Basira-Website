@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import nodemailer from 'nodemailer';
 import sgmail from '@sendgrid/mail';
 
 sgmail.setApiKey(process.env.SENDGRID_API_KEY!);
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     
     return NextResponse.json(
         { message: 'GET method is working for testing',
@@ -66,8 +65,8 @@ export async function POST(req: NextRequest) {
             { message: 'Thanks for Joining the Process and trusting Basira Studio' },
             { status: 200 }
         );
-    } catch (error : any) {
-        console.error('Error in POST method:', error.message, error.stack);
+    } catch (error : unknown ) {
+        console.error('Error in POST method:', error);
         return NextResponse.json({ message: 'Something went wrong' }, { status: 500 });
     }
 }
