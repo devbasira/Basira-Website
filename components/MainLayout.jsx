@@ -2,8 +2,6 @@ import React from 'react';
 
 import ImageBanner from './ImageBanner'; // Adjust the path if needed
 
-
-
 export default function PortfolioLayout() {
     return (
         <div className="grid lg:grid-cols-4 lg:w-[1288px] h-screen">
