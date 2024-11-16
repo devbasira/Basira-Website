@@ -4,9 +4,6 @@
         "src": "next.config.js",
         "use": "@vercel/next"
       }
-    ],
-    "hooks": {
-      "build": "npx prisma migrate deploy && npx prisma generate"
-    }
+    ]
   }
   
