@@ -138,7 +138,7 @@ export default function PortfolioLayout() {
 
                 <div className="mt-8">
                     <img
-                        src={'/logo.png'}
+                        src={'/Basira_Logo_Color.svg'}
                         alt="Basira Studio Logo"
                         className="w-[204px] h-auto"
                     />

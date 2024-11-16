@@ -16,7 +16,6 @@ const ImageBanner = ({src, title} : {src : string, title : string}) => {
             <p className="font-semibold text-[16px]">{title}</p>
             <div className="relative">
                 <a
-                    href="#"
                     onClick={() => handleClick("iwan")}
                     className="font-medium text-[#666666] text-[16px] relative"
                 >
