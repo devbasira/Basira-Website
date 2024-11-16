@@ -66,7 +66,7 @@ export default function PortfolioLayout() {
                 </div>
                 <div className="bg-white w-full">
                     <h4 className='text-[#666666] font-extralight'>#buildingInPublic</h4>
-                    <h2 className="text-[16px] font-bold text-[#2D3A8C] mb-4">
+                    <h2 className="text-[16px] font-bold text-[#2226bc] mb-4">
                         We’re Still Building — Join the Process!
                     </h2>
                     <p className="text-[#666666] font-light mb-6 text-[16px]">
@@ -81,6 +81,7 @@ export default function PortfolioLayout() {
                                 value={email}
                                 onChange={handleEmailChange}
                             />
+                            {/* <img className='w-[55px] h-[55px]' src={'/Button_default.svg'} alt="" /> */}
                             <button
                                 type="submit"
                                 disabled={loading}
@@ -129,7 +130,7 @@ export default function PortfolioLayout() {
                     </form>
 
                     {statusMessage && (
-                        <div className="mt-4 text-center text-sm text-[#333333]">
+                        <div className="mt-4 text-start text-sm text-[#333333]">
                             <p>{statusMessage}</p>
                         </div>
                     )}
@@ -145,9 +146,9 @@ export default function PortfolioLayout() {
             </div>
             <div className="lg:overflow-y-auto no-scrollbar flex flex-col items-center col-span-3 p-[30px]">
                 <div className="space-y-[40px]">
-                    <ImageBanner src='/banner_A.jpeg' title='Ivan' />
-                    <ImageBanner src='/banner_B.jpeg' title='Sustenance' />
-                    <ImageBanner src='/banner_C.jpeg' title='ETS Contracts' />
+                    <ImageBanner src='/MacBook_.jpg' title='Ivan' />
+                    <ImageBanner src='/Sustenance_tote.jpg' title='Sustenance' />
+                    <ImageBanner src='/ILCS_.jpg' title='ETS Contracts' />
                 </div>
             </div>
         </div>
