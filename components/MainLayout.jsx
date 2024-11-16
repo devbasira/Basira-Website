@@ -9,6 +9,7 @@ export default function PortfolioLayout() {
         <div className="grid lg:grid-cols-4 lg:w-[1288px] h-screen">
             <div className="p-[30px] lg:pr-[30px] pr-[60px] bg-white col-span-1 lg:overflow-y-auto lg:items-start  lg:w-[350px] w-screen  lg:h-screen flex flex-col  justify-between h-[90vh]">
                 <div className='space-y-[15px]'>
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
                     <h2 className="text-[24px] font-bold">"Make things easy for the people,..."</h2>
                     <p className="mt-4 font-light text-[16px] text-[#666666]">
                         At Basira Studio, we believe in the power of thoughtful design to transform everyday experiences. Our vision is to create intuitive, uplifting, and inclusive solutions that make life simpler and more joyful.
