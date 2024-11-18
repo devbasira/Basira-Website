@@ -19,3 +19,23 @@
         /* Firefox */
     }
 }
+
+
+@media (max-width: 380px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: fit-content;
+     
+    }
+}
+
+@media (max-width: 480px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        height: fit-content;
+    }
+}
