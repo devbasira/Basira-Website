@@ -19,7 +19,7 @@ const ImageBanner = ({src, title} : {src : string, title : string}) => {
                     onClick={() => handleClick("iwan")}
                     className="font-medium text-[#4a4a4a] text-[16px] relative group"
                 >
-                    View <img className="w-[20px] h-[20px] inline-block transition-transform duration-300 group-hover:-rotate-45" src="/arrow_forward_dark.svg" alt="" />
+                    View <img className=" w-[20px] h-[20px] inline-block transition-transform duration-300 group-hover:-rotate-45" src="/arrow_forward_dark.svg" alt="" />
                 </a>
                 {visibleTooltip === "iwan" && (
                    <motion.div

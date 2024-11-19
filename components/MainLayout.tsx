@@ -37,10 +37,10 @@ export default function PortfolioLayout() {
             const data = await response.json();
 
             if (response.status === 200) {
-                setStatusMessage(data.message); // Success message
-                setEmail(""); // Reset email field
+                setStatusMessage(data.message); 
+                setEmail("");
             } else {
-                setStatusMessage(data.message); // Error message
+                setStatusMessage(data.message);
             }
         } catch (error) {
             console.error(error);
@@ -57,32 +57,28 @@ export default function PortfolioLayout() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.0, ease: "easeOut" }}
+                    // className="sticky top-8 z-10 bg-transparent"
                 >
-                    <img className="w-[75px] h-[75px]" src={'/basira_dot.svg'} />
+                    <img className=" bg-transparent w-[75px] h-[75px]" src={'/basira_dot.svg'} />
                 </motion.div>
                 {/* <img className="w-[75px] h-[75px]" src={'/basira_dot.svg'} /> */}
                 <div className="space-y-[15px]">
 
-                    <h2 className="text-[24px] font-bold">
-                        &quot;Make things easy for the people,...&quot;
+                    <h2 className="text-[22px] lg:text-[24px] font-bold">
+                        Make things easy <br />for the people...
                     </h2>
-                    <p className="mt-4 font-light lg:text-[16px] text-[18px]  text-[#666666]">
-                        At Basira Studio, we believe in the power of thoughtful design to
-                        transform everyday experiences. Our vision is to create intuitive,
-                        uplifting, and inclusive solutions that make life simpler and more
-                        joyful.
+                    <p className="mt-4 font-light lg:text-[16px] text-[16px]  text-[#666666] lg:ml-0 ml-[30px]">
+                    At Basira, we believe insight-driven design has the power to elevate brands and transform how they connect with people.
                     </p>
-
                 </div>
                 <div className="bg-gray-300 lg:w-72 w-full h-[1px]" />
                 <div className=" w-full">
-                    <h4 className="text-[#666666] font-extralight">#buildingInPublic</h4>
+                    <h4 className="text-[#00667d] font-normal">#buildingInPublic</h4>
                     <h2 className="text-[16px] font-bold text-[#4A4A4A] mb-4">
                         We’re Still Building — Join the Process!
                     </h2>
-                    <p className="text-[#666666] font-light mb-6 lg:text-[16px] text-[18px]">
+                    <p className="text-[#666666] font-light mb-6 lg:text-[16px] text-[16px]">
                         Sign up to be part of our journey.
-                        <br />Let’s create something amazing together.
                     </p>
                     <form className="space-y-[15px]" onSubmit={handleSubmit}>
                         <div className="flex lg:justify-between h-[50px] items-center ">
@@ -98,7 +94,7 @@ export default function PortfolioLayout() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="flex-shrink-0 w-[45px] h-[45px] lg:ml-0 ml-5 w-[50px] h-[50px] bg-[#4A4A4A] hover:bg-[#b10439] focus:ring-2 focus:outline-none focus:ring-[#B8E1BB] font-medium rounded-full text-sm flex justify-center items-center transition-transform duration-300 hover:-rotate-45"
+                                className="flex-shrink-0 w-[45px] h-[45px] lg:ml-0 ml-5 w-[50px] h-[50px] bg-[#4A4A4A] hover:bg-[#00667d] focus:ring-2 focus:outline-none focus:ring-[#B8E1BB] font-medium rounded-full text-sm flex justify-center items-center transition-transform duration-300 hover:-rotate-45"
                             >
                                 {loading ? (
                                     <svg
