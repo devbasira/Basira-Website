@@ -1,8 +1,9 @@
 "use client";
-import React, { useState} from "react";
+import React, { useState } from "react";
 import ImageBanner from "./ImageBanner";
+import { useInView } from 'react-intersection-observer';
 import '../app/globals.css'
-import { motion } from 'framer-motion';
+import { motion, delay } from 'framer-motion';
 
 export default function PortfolioLayout() {
     const [email, setEmail] = useState("");
@@ -11,6 +12,25 @@ export default function PortfolioLayout() {
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
+    };
+
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+        threshold: 0.2,
+    });
+
+
+    const variants = {
+        hidden: { opacity: 0, y: 60 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 1.5,
+                ease: "easeOut",
+                delay: 0.5
+            }
+        }
     };
 
 
@@ -37,7 +57,7 @@ export default function PortfolioLayout() {
             const data = await response.json();
 
             if (response.status === 200) {
-                setStatusMessage(data.message); 
+                setStatusMessage(data.message);
                 setEmail("");
             } else {
                 setStatusMessage(data.message);
@@ -57,35 +77,68 @@ export default function PortfolioLayout() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.0, ease: "easeOut" }}
-                    // className="sticky top-8 z-10 bg-transparent"
+                // className="sticky top-8 z-10 bg-transparent"
                 >
                     <img className=" bg-transparent w-[75px] h-[75px]" src={'/basira_dot.svg'} />
                 </motion.div>
                 {/* <img className="w-[75px] h-[75px]" src={'/basira_dot.svg'} /> */}
                 <div className="space-y-[15px]">
-
-                    <h2 className="text-[22px] lg:text-[24px] font-bold">
+                    <motion.h2
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1.0 }}
+                        className="text-[22px] lg:text-[24px] font-bold">
                         Make things easy <br />for the people...
-                    </h2>
-                    <p className="mt-4 font-light lg:text-[16px] text-[16px]  text-[#666666] lg:ml-0 ml-[30px]">
-                    At Basira, we believe insight-driven design has the power to elevate brands and transform how they connect with people.
-                    </p>
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1.0, ease: "easeOut", delay: 0.5 }}
+                        className="mt-4 font-light lg:text-[16px] text-[16px]  text-[#666666] lg:ml-0 ml-[30px]">
+                        At Basira, we believe insight-driven design has the power to elevate brands and transform how they connect with people.
+                    </motion.p>
                 </div>
-                <div className="bg-gray-300 lg:w-72 w-full h-[1px]" />
+                <motion.div
+                    initial={{ opacity: 0, x: -20, scaleX: 0 }} 
+                    animate={{ opacity: 1, x: 0, scaleX: 1 }} 
+                    transition={{
+                        duration: 1.5,
+                        ease: "easeOut",
+                        delay: 1.5,
+                    }}
+                    className="bg-gray-300 lg:w-72 w-full h-[1px] origin-left" // Use `origin-left` to make scaleX expand from left
+                />
                 <div className=" w-full">
-                    <h4 className="text-[#00667d] font-normal">#buildingInPublic</h4>
-                    <h2 className="text-[16px] font-bold text-[#4A4A4A] mb-4">
+                    <motion.h4
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.0, ease: "easeOut", delay: 1 }}
+                        className="text-[#00667d] mb-1 text-[16px] font-normal bg-transparent">#buildingInPublic</motion.h4>
+                    <motion.h2
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1.0, ease: "easeOut" }}
+                        className="text-[16px] font-bold text-[#4A4A4A] mb-4 ">
                         We’re Still Building — Join the Process!
-                    </h2>
-                    <p className="text-[#666666] font-light mb-6 lg:text-[16px] text-[16px]">
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1.0, ease: "easeOut", delay: 0.5 }}
+                        className="text-[#666666] font-light mb-6 lg:text-[16px] text-[16px]">
                         Sign up to be part of our journey.
-                    </p>
-                    <form className="space-y-[15px]" onSubmit={handleSubmit}>
-                        <div className="flex lg:justify-between h-[50px] items-center ">
+                    </motion.p>
+                    <form
+                        className="space-y-[15px]" onSubmit={handleSubmit}>
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1.0, ease: "easeOut", delay: 1 }}
+                            className="flex lg:justify-between h-[50px] items-center ">
                             <input
                                 type="email"
                                 placeholder="Enter your Email"
-                                className="flex-grow h-[50px] px-4 py-2 border-t border-gray-100 border-b border-b-[#4a4a4a] focus:outline-none focus:bg-gray-100 placeholder-gray-500 appearance-none rounded-none"
+                                className="flex w-56 h-[50px] px-4 py-2 border-t border-gray-100 border-b border-b-[#4a4a4a] focus:outline-none focus:bg-gray-100 placeholder-gray-500 appearance-none rounded-none"
                                 value={email}
                                 onChange={handleEmailChange}
                             />
@@ -94,7 +147,7 @@ export default function PortfolioLayout() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="flex-shrink-0 w-[45px] h-[45px] lg:ml-0 ml-5 w-[50px] h-[50px] bg-[#4A4A4A] hover:bg-[#00667d] focus:ring-2 focus:outline-none focus:ring-[#B8E1BB] font-medium rounded-full text-sm flex justify-center items-center transition-transform duration-300 hover:-rotate-45"
+                                className="flex-shrink-0 w-[45px] h-[45px] lg:ml-0 ml-6 bg-[#4A4A4A] hover:bg-[#00667d] focus:ring-2 focus:outline-none focus:ring-[#B8E1BB] font-medium rounded-full text-sm flex justify-center items-center transition-transform duration-300 hover:-rotate-45"
                             >
                                 {loading ? (
                                     <svg
@@ -125,7 +178,7 @@ export default function PortfolioLayout() {
                                     />
                                 )}
                             </button>
-                        </div>
+                        </motion.div>
                     </form>
 
                     {statusMessage && (
@@ -136,20 +189,29 @@ export default function PortfolioLayout() {
                 </div>
 
                 <div className="mt-8 image-component">
-                    <img
+                    <motion.img
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.0, ease: "easeOut", }}
                         src={"/Basira_Logo_Color.svg"}
                         alt="Basira Studio Logo"
                         className="w-[204px] h-auto"
                     />
                 </div>
             </div>
-            <div className="lg:overflow-y-auto no-scrollbar flex flex-col items-center col-span-3 lg:p-[30px] p-[25px]">
+            <motion.div
+                ref={ref}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={variants}
+                className="lg:overflow-y-auto no-scrollbar flex flex-col items-center col-span-3 lg:p-[30px] p-[25px]">
                 <div className="space-y-[40px]">
                     <ImageBanner src="/MacBook_.jpg" title="Funoon" />
                     <ImageBanner src="/Sustenance_tote.jpg" title="Sustenance" />
                     <ImageBanner src="/ILCS_.jpg" title="ILCS" />
+
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }
