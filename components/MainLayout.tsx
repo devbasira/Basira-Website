@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ImageBanner from "./ImageBanner";
 import { useInView } from 'react-intersection-observer';
 import '../app/globals.css'
-import { motion, delay } from 'framer-motion';
+import { motion} from 'framer-motion';
 
 export default function PortfolioLayout() {
     const [email, setEmail] = useState("");
