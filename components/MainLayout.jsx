@@ -1,16 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ImageBanner from "./ImageBanner";
 import { useInView } from 'react-intersection-observer';
 import '../app/globals.css'
-import { motion} from 'framer-motion';
-
+import { motion } from 'framer-motion';
+import { mergeRefs } from "react-merge-refs";
 export default function PortfolioLayout() {
     const [email, setEmail] = useState("");
     const [statusMessage, setStatusMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const leftSectionRef = useRef(null);
+    const [contentHover, setContentHover] = useState(false);
+    const contentRef = useRef(null);
+
+    const handleEmailChange = (e) => {
         setEmail(e.target.value);
     };
 
@@ -18,6 +22,32 @@ export default function PortfolioLayout() {
         triggerOnce: true,
         threshold: 0.2,
     });
+
+    useEffect(() => {
+        const handleScrolling = (event) => {
+            if (contentRef.current && !contentHover) {
+                contentRef.current.scrollTop += event.deltaY;
+            }
+        };
+    
+        const handleResize = () => {
+            if (window.innerWidth < 768) { // Assuming mobile is less than 768px
+                window.removeEventListener("wheel", handleScrolling);
+            } else {
+                window.addEventListener("wheel", handleScrolling);
+            }
+        };
+    
+        handleResize(); // Check on initial render
+    
+        window.addEventListener("resize", handleResize); // Check on resize
+    
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            window.removeEventListener("wheel", handleScrolling);
+        };
+    }, [contentHover]);
+
 
 
     const variants = {
@@ -34,7 +64,7 @@ export default function PortfolioLayout() {
     };
 
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setStatusMessage("");
@@ -71,36 +101,39 @@ export default function PortfolioLayout() {
     };
 
     return (
-        <div className="grid lg:grid-cols-4 lg:w-[1288px] h-screen">
-            <div className="container p-[30px] md:gap-10px lg:pr-[30px] pr-[60px]  col-span-1 lg:overflow-y-auto lg:items-start lg:w-[350px] w-screen lg:h-screen flex flex-col justify-between h-[90vh]">
+        <div
+            className="lg:fixed grid lg:grid-cols-4 lg:w-[1288px] h-screen lg:overflow-y-auto">
+            <div
+                 className="p-[30px] md:gap-10px lg:pr-[30px] pr-[60px] col-span-1 lg:overflow-y-auto lg:items-start lg:w-[350px] w-screen lg:h-screen flex flex-col justify-between h-[90vh]">
                 <motion.div
+
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.0, ease: "easeOut" }}
                 // className="sticky top-8 z-10 bg-transparent"
                 >
-                    <img className=" bg-transparent w-[75px] h-[75px]" src={'/basira_dot.svg'} />
+                    <img className="lg:overflow-y-auto bg-transparent w-[75px] h-[75px]" src={'/basira_dot.svg'} />
                 </motion.div>
                 {/* <img className="w-[75px] h-[75px]" src={'/basira_dot.svg'} /> */}
-                <div className="space-y-[15px]">
+                <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.0 }}
+                    className="space-y-[15px]">
+
                     <motion.h2
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1.0 }}
                         className="text-[22px] lg:text-[24px] font-bold">
                         Make things easy <br />for the people...
                     </motion.h2>
                     <motion.p
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1.0, ease: "easeOut", delay: 0.5 }}
+
                         className="mt-4 font-light lg:text-[16px] text-[16px]  text-[#666666] lg:ml-0 ml-[30px]">
                         At Basira, we believe insight-driven design has the power to elevate brands and transform how they connect with people.
                     </motion.p>
-                </div>
+                </motion.div>
                 <motion.div
-                    initial={{ opacity: 0, x: -20, scaleX: 0 }} 
-                    animate={{ opacity: 1, x: 0, scaleX: 1 }} 
+                    initial={{ opacity: 0, x: -20, scaleX: 0 }}
+                    animate={{ opacity: 1, x: 0, scaleX: 1 }}
                     transition={{
                         duration: 1.5,
                         ease: "easeOut",
@@ -108,32 +141,37 @@ export default function PortfolioLayout() {
                     }}
                     className="bg-gray-300 lg:w-72 w-full h-[1px] origin-left" // Use `origin-left` to make scaleX expand from left
                 />
-                <div className=" w-full">
+                <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.0 }}
+                    className=" w-full">
+
                     <motion.h4
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.0, ease: "easeOut", delay: 1 }}
+                        // initial={{ opacity: 0, y: 20 }}
+                        // animate={{ opacity: 1, y: 0 }}
+                        // transition={{ duration: 1.0, ease: "easeOut", delay: 1 }}
                         className="text-[#00667d] mb-1 text-[16px] font-normal bg-transparent">#buildingInPublic</motion.h4>
                     <motion.h2
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1.0, ease: "easeOut" }}
+                        // initial={{ opacity: 0, x: -20 }}
+                        // animate={{ opacity: 1, x: 0 }}
+                        // transition={{ duration: 1.0, ease: "easeOut" }}
                         className="text-[16px] font-bold text-[#4A4A4A] mb-4 ">
                         We’re Still Building — Join the Process!
                     </motion.h2>
                     <motion.p
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1.0, ease: "easeOut", delay: 0.5 }}
+                        // initial={{ opacity: 0, x: -20 }}
+                        // animate={{ opacity: 1, x: 0 }}
+                        // transition={{ duration: 1.0, ease: "easeOut", delay: 0.5 }}
                         className="text-[#666666] font-light mb-6 lg:text-[16px] text-[16px]">
                         Sign up to be part of our journey.
                     </motion.p>
                     <form
                         className="space-y-[15px]" onSubmit={handleSubmit}>
                         <motion.div
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1.0, ease: "easeOut", delay: 1 }}
+                            // initial={{ opacity: 0, y: -20 }}
+                            // animate={{ opacity: 1, y: 0 }}
+                            // transition={{ duration: 1.0, ease: "easeOut", delay: 1 }}
                             className="flex lg:justify-between h-[50px] items-center ">
                             <input
                                 type="email"
@@ -186,7 +224,7 @@ export default function PortfolioLayout() {
                             <p>{statusMessage}</p>
                         </div>
                     )}
-                </div>
+                </motion.div>
 
                 <div className="mt-8 image-component">
                     <motion.img
@@ -200,12 +238,14 @@ export default function PortfolioLayout() {
                 </div>
             </div>
             <motion.div
-                ref={ref}
+                ref={mergeRefs([ref, contentRef])}
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 variants={variants}
                 className="lg:overflow-y-auto no-scrollbar flex flex-col items-center col-span-3 lg:p-[30px] p-[25px]">
-                <div className="space-y-[40px]">
+                <div
+                    onMouseEnter={() => { setContentHover(true) }}
+                    onMouseLeave={() => { setContentHover(false) }} className="space-y-[40px]">
                     <ImageBanner src="/MacBook_.jpg" title="Funoon" />
                     <ImageBanner src="/Sustenance_tote.jpg" title="Sustenance" />
                     <ImageBanner src="/ILCS_.jpg" title="ILCS" />
