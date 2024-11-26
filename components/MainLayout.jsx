@@ -10,7 +10,6 @@ export default function PortfolioLayout() {
     const [statusMessage, setStatusMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const leftSectionRef = useRef(null);
     const [contentHover, setContentHover] = useState(false);
     const contentRef = useRef(null);
 
