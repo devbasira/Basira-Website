@@ -1,9 +1,8 @@
-import PortfolioLayout from '../components/MainLayout'
-
+import HomePage from '@/components/HomePage'
 export default function Home() {
   return (
-    <div className="w-screen flex justify-center">
-      <PortfolioLayout />
+    <div className="flex justify-center">
+      <HomePage />
     </div>
   );
 }
