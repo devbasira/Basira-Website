@@ -10,33 +10,32 @@ const HomePage = () => {
         setIsExpanded(prev => !prev);
     }
 
-
     return (
         <div className='h-screen overflow-y-auto max-w-container w-full flex flex-col items-center justify-center'>
-            <nav className=' flex justify-start items-center w-full h-32 px-6'>
+            <nav className='flex justify-start items-center w-full h-32 px-6'>
                 {isExpanded &&
                     <motion.img
                         initial={{ opacity: 0, x: 0 }}
                         animate={{ opacity: 0.6, x: 0 }}
                         transition={{ duration: 0.5 }}
-                        whileHover={{opacity : 1, }}
-                        alt='Logo '
+                        whileHover={{ opacity: 1 }}
+                        alt='Logo'
                         src={'/Basira_Logo_Black.svg'}
                         width={200}
                         height={100}
-                        className=''
+                        className='z-100'
                     />
                 }
             </nav>
             <motion.div
-                className="main flex flex-col justify-center font-bold items-start gap-[20px] h-full max-w-grid w-full px-40"
+                className="main bg-transparent flex flex-col justify-center font-bold items-start gap-[20px] h-full max-w-grid w-full px-4 sm:px-8 lg:px-40"
                 animate={{
                     y: isExpanded ? -100 : 0,
                     transition: { duration: 0.5 }
                 }}
             >
                 <motion.h1
-                    className='text-8xl'
+                    className='text-6xl lg:text-9xl'
                     animate={{
                         fontSize: isExpanded ? '50px' : '100px',
                         transition: { duration: 0.5 }
@@ -63,17 +62,16 @@ const HomePage = () => {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <h3 className='text-yellow-500'>
+                            <h3 className='text-yellow-500 text-xl sm:text-2xl'>
                                 curiosity is our compass.
                             </h3>
-                            <p className='font-light'>
+                            <p className='font-light text-sm sm:text-base'>
                                 Curiosity is the driving force behind everything we do. We constantly ask “why”—challenging assumptions, questioning processes, and exploring possibilities. Before we share what we stand for, we believe it’s important to understand why our principles matter.
                                 <br />
                                 Principles, to us, are more than ideals. They are actionable frameworks that shape our decisions and behaviors, even in the face of complexity or change. They provide a steady foundation that keeps us grounded while enabling adaptability.
 
                                 <br />
                                 But principles don’t just guide—they simplify. They transform complexity into clarity, chaos into order, and big challenges into achievable goals.
-
 
                                 <br />
                                 At Basira, this commitment to simplicity is rooted in one unwavering belief: Make things easy for everyone. This principle shapes everything we do—from the strategies we develop to the solutions we deliver—ensuring they are clear, practical, and impactful.
