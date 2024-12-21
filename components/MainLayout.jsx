@@ -175,7 +175,7 @@ export default function PortfolioLayout() {
                             <input
                                 type="email"
                                 placeholder="Enter your Email"
-                                className="flex w-56 h-[50px] px-4 py-2 border-t border-gray-100 border-b border-b-[#4a4a4a] focus:outline-none focus:bg-gray-100 placeholder-gray-500 appearance-none rounded-none"
+                                className="flex lg:w-56 w-[80vw] h-[50px] px-4 py-2 border-t border-gray-100 border-b border-b-[#4a4a4a] focus:outline-none focus:bg-gray-100 placeholder-gray-500 appearance-none rounded-none"
                                 value={email}
                                 onChange={handleEmailChange}
                             />

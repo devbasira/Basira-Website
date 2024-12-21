@@ -15,13 +15,13 @@ const ImageBanner = ({ src, title }: { src: string; title: string }) => {
     return (
         <div className="relative lg:px-[30px] group cursor-pointer">
             <motion.div
-                className="relative overflow-hidden" // Ensure the container is positioned relative
+                className="relative overflow-hidden"
                 onClick={() => handleClick("iwan")}
             >
                 <motion.img
                     src={src}
                     alt={title}
-                    className="w-full h-auto object-cover transition-all duration-300"
+                    className="w-full lg:h-[80vh] md:h-[70vh] h-[50vh] object-cover transition-all duration-300"
                     whileHover={{ scale: 1.1 }} // Zoom the image content only
                     transition={{ duration: 0.2, ease: "easeInOut" }}
                 />
