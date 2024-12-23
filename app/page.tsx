@@ -1,8 +1,10 @@
 import HomePage from '@/components/HomePage'
+import Projects from '@/components/Projects'
 export default function Home() {
   return (
-    <div className="flex justify-center">
+    <div className="flex flex-col overflow-x-hidden justify-center">
       <HomePage />
+      <Projects />
     </div>
   );
 }
