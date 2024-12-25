@@ -245,9 +245,9 @@ export default function PortfolioLayout() {
                 <div
                     onMouseEnter={() => { setContentHover(true) }}
                     onMouseLeave={() => { setContentHover(false) }} className="space-y-[40px]">
-                    <ImageBanner src="/MacBook_.jpg" title="Funoon" />
-                    <ImageBanner src="/Sustenance_tote.jpg" title="Sustenance" />
-                    <ImageBanner src="/ILCS_.jpg" title="ILCS" />
+                    <ImageBanner src="/MacBook_.jpg" title="funoon.io" />
+                    <ImageBanner src="/Sustenance_tote.jpg" title="sustenance.community" />
+                    <ImageBanner src="/ILCS_.jpg" title="iwan.community" />
 
                 </div>
             </motion.div>
