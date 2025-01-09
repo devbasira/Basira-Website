@@ -10,8 +10,6 @@ const HomePage = () => {
         setIsExpanded(prev => !prev);
     }
 
-    const isMobile = window.innerWidth <= 768;
-
     return (
         <div className='h-screen overflow-y-auto max-w-container w-full flex flex-col items-center justify-center'>
             <nav className='flex justify-start items-center w-full h-32 px-6'>
