@@ -10,6 +10,8 @@ const HomePage = () => {
         setIsExpanded(prev => !prev);
     }
 
+    const isMobile = window.innerWidth <= 768;
+
     return (
         <div className='h-screen overflow-y-auto max-w-container w-full flex flex-col items-center justify-center'>
             <nav className='flex justify-start items-center w-full h-32 px-6'>
@@ -28,17 +30,26 @@ const HomePage = () => {
                 }
             </nav>
             <motion.div
-                className="main bg-transparent flex flex-col justify-center font-bold items-start gap-[20px] h-full max-w-grid w-full px-4 sm:px-8 lg:px-40"
+                className="main bg-transparent flex flex-col justify-center font-bold items-start h-full max-w-grid w-full px-4 sm:px-8 lg:px-40"
                 animate={{
                     y: isExpanded ? -100 : 0,
-                    transition: { duration: 0.5 }
+                    gap: isExpanded ? 0 : 20, // Animate the gap dynamically
+                    transition: { duration: 0.5 },
+                }}
+                style={{
+                    gap: isExpanded ? "100px" : "20px",
+
                 }}
             >
                 <motion.h1
-                    className='text-6xl lg:text-9xl'
+                    className='text-[40px] lg:text-[100px] bg-transparent'
                     animate={{
-                        fontSize: isExpanded ? '50px' : '100px',
+                        scale: isExpanded ? 0.7 : 1, // Scale instead of changing fontSize
                         transition: { duration: 0.5 }
+                    }}
+                    style={{
+                        transformOrigin: "left top",
+                        marginTop : isExpanded? "50px" : "0px"
                     }}
                 >
                     make things easy
