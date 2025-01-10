@@ -33,6 +33,9 @@ const HomePage = () => {
     setSelectedFilter(null); // Reset filter when changing tabs
   };
 
+  const isMobile = window.innerWidth <= 768;
+
+
   const categories = [
     {
       name: "Curated Collection",
@@ -52,22 +55,23 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="h-screen overflow-y-auto max-w-container w-full flex flex-col items-center justify-center">
-      <nav className="flex justify-start items-center w-full h-32 px-6">
-        {isExpanded && (
-          <motion.img
-            initial={{ opacity: 0, x: 0 }}
-            animate={{ opacity: 0.6, x: 0 }}
-            transition={{ duration: 0.5 }}
-            whileHover={{ opacity: 1 }}
-            alt="Logo"
-            src={"/Basira_Logo_Black.svg"}
-            width={200}
-            height={100}
-            className="z-100"
-          />
-        )}
-      </nav>
+    <div className="relative h-screen overflow-y-auto max-w-container w-full flex flex-col items-center justify-center">
+        {
+            isExpanded && (
+                <nav className="flex justify-start items-center w-full bg-blue-200 h-32 px-6">
+                  <motion.img
+                    initial={{ opacity: 0, x: 0 }}
+                    animate={{ opacity: 0.6, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    whileHover={{ opacity: 1 }}
+                    alt="Logo"
+                    src={"/Basira_Logo_Black.svg"}
+                    width={200}
+                    height={100}
+                    className="z-100"
+                  />
+              </nav>
+            )}
       <motion.div
         className="main bg-transparent flex flex-col justify-center font-bold items-start h-full max-w-grid w-full px-4 sm:px-8 lg:px-40"
         animate={{
@@ -151,7 +155,7 @@ const HomePage = () => {
             className="flex flex-col mt-6"
             initial={{ y: 200 }}
             animate={{
-              y: isTabExpanded ? -200 : 0,
+              y: isTabExpanded ? isMobile ? 350: -200 : 0,
               transition: { duration: 0.5 },
             }}
           >
