@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { CirclePlus } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -22,6 +22,7 @@ const HomePage = () => {
   const [isTabExpanded, setIsTabExpanded] = useState(false);
   const [selectedTab, setSelectedTab] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleClick = () => {
     setIsExpanded((prev) => !prev);
@@ -33,7 +34,14 @@ const HomePage = () => {
     setSelectedFilter(null); // Reset filter when changing tabs
   };
 
-  const isMobile = window.innerWidth <= 768;
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkIsMobile(); // Run on initial mount
+    window.addEventListener("resize", checkIsMobile); // Update on resize
+    return () => window.removeEventListener("resize", checkIsMobile); // Cleanup
+  }, []);
 
 
   const categories = [
@@ -58,7 +66,7 @@ const HomePage = () => {
     <div className="relative h-screen overflow-y-auto max-w-container w-full flex flex-col items-center justify-center">
         {
             isExpanded && (
-                <nav className="flex justify-start items-center w-full bg-blue-200 h-32 px-6">
+                <nav className="flex justify-start items-center w-full h-32 px-6">
                   <motion.img
                     initial={{ opacity: 0, x: 0 }}
                     animate={{ opacity: 0.6, x: 0 }}
