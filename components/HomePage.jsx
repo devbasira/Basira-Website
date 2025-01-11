@@ -1,19 +1,23 @@
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { CirclePlus } from "lucide-react";
 import { motion } from "framer-motion";
 
 const CuratedCollectionComponent = ({ filter }) => (
   <div className="p-4 border rounded">
     <h3 className="text-xl font-bold">Curated Collection Component</h3>
-    <p className="text-gray-600">Currently selected filter: {filter || "None"}</p>
+    <p className="text-gray-600">
+      Currently selected filter: {filter || "None"}
+    </p>
   </div>
 );
 
 const FinanceComponent = ({ filter }) => (
   <div className="p-4 border rounded">
     <h3 className="text-xl font-bold">Finance Component</h3>
-    <p className="text-gray-600">Currently selected filter: {filter || "None"}</p>
+    <p className="text-gray-600">
+      Currently selected filter: {filter || "None"}
+    </p>
   </div>
 );
 
@@ -43,7 +47,6 @@ const HomePage = () => {
     return () => window.removeEventListener("resize", checkIsMobile); // Cleanup
   }, []);
 
-
   const categories = [
     {
       name: "Curated Collection",
@@ -64,26 +67,9 @@ const HomePage = () => {
 
   return (
     <div className="relative h-screen overflow-y-auto max-w-container w-full flex flex-col items-center justify-center">
-        {
-            isExpanded && (
-                <nav className="flex justify-start items-center w-full h-32 px-6">
-                  <motion.img
-                    initial={{ opacity: 0, x: 0 }}
-                    animate={{ opacity: 0.6, x: 0 }}
-                    transition={{ duration: 0.5 }}
-                    whileHover={{ opacity: 1 }}
-                    alt="Logo"
-                    src={"/Basira_Logo_Black.svg"}
-                    width={200}
-                    height={100}
-                    className="z-100"
-                  />
-              </nav>
-            )}
       <motion.div
         className="main bg-transparent flex flex-col justify-center font-bold items-start h-full max-w-grid w-full px-4 sm:px-8 lg:px-40"
         animate={{
-          y: isExpanded ? -100 : 0,
           gap: isExpanded ? 0 : 20,
           transition: { duration: 0.5 },
         }}
@@ -91,39 +77,21 @@ const HomePage = () => {
           gap: isExpanded ? "10px" : "20px",
         }}
       >
-        {!isTabExpanded && (
-          <motion.h1
-            className="text-[40px] lg:text-[100px] bg-transparent"
-            animate={{
-              scale: isExpanded ? 0.7 : 1,
-              transition: { duration: 0.5 },
-            }}
-            style={{
-              transformOrigin: "left top",
-              marginTop: isExpanded ? "50px" : "0px",
-            }}
-          >
-            make things easy
-          </motion.h1>
-        )}
-        {!isTabExpanded && (
-          <motion.div
-            onClick={handleClick}
-            className="group cursor-pointer"
-            animate={{
-              scale: isExpanded ? 0.8 : 1,
-              rotate: isExpanded ? 45 : 0,
-              transition: { duration: 0.3 },
-            }}
-          >
-            <CirclePlus
-              width={50}
-              height={50}
-              className="text-gray-500 group-hover:text-yellow-500 transition-colors duration-300"
-            />
-          </motion.div>
-        )}
-        {isExpanded && !isTabExpanded && (
+        <motion.h1
+          className="text-[40px] lg:text-[100px] bg-transparent"
+          animate={{
+            scale: isExpanded ? 0.7 : 1,
+            transition: { duration: 0.5 },
+          }}
+          style={{
+            transformOrigin: "left top",
+            marginTop: isExpanded ? "50px" : "0px",
+          }}
+        >
+          make things easy
+        </motion.h1>
+
+        {isExpanded && (
           <motion.div
             className="inner flex flex-col gap-[10px]"
             initial={{ opacity: 0 }}
@@ -158,90 +126,56 @@ const HomePage = () => {
             </p>
           </motion.div>
         )}
-        {isExpanded && (
-          <motion.div
-            className="flex flex-col mt-6"
-            initial={{ y: 200 }}
-            animate={{
-              y: isTabExpanded ? isMobile ? 350: -200 : 0,
-              transition: { duration: 0.5 },
-            }}
-          >
-            <div className="tabs items-center flex gap-4">
+        <motion.div
+          onClick={handleClick}
+          className="group cursor-pointer mt-3"
+          animate={{
+            scale: isExpanded ? 0.8 : 1,
+            rotate: isExpanded ? 45 : 0,
+            transition: { duration: 0.3 },
+          }}
+        >
+          <CirclePlus
+            width={50}
+            height={50}
+            className="text-gray-500 group-hover:text-yellow-500 transition-colors duration-300"
+          />
+        </motion.div>
+      </motion.div>
+      {isExpanded && (
+        <div className="flex justify-start items-center max-w-container w-full py-3 px-4">
+          <div className="w-1/6  flex justify-start">
+          <motion.img
+            initial={{ opacity: 0, x: 0 }}
+            animate={{ opacity: 0.6, x: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ opacity: 1 }}
+            alt="Logo"
+            src={"/Basira_Logo_Color.svg"}
+            width={200}
+            height={100}
+            className="z-100"
+          />
+          </div>
+          <motion.div className="flex ml-[60px] flex-col mt-6 items-start w-2/3">
+            <div className="tabs flex justify-center items-center gap-6 text-lg font-medium">
               {categories.map((category) => (
                 <button
                   key={category.name}
-                  className={`px-4 py-2 font-bold rounded ${
+                  className={`hover:text-gray-800 transition ${
                     selectedTab === category.name
-                      ? "bg-black text-white"
-                      : "bg-gray-200 text-black"
+                      ? "font-bold text-black"
+                      : "text-gray-600"
                   }`}
                   onClick={() => handleTabClick(category.name)}
                 >
-                  {category.name}
+                  {category.name.toLowerCase()}{" "}
                 </button>
               ))}
-              {isTabExpanded && (
-                <motion.div
-                  onClick={() => {
-                    setIsTabExpanded(false);
-                  }}
-                  className="group flex items-center cursor-pointer mt-2"
-                >
-                  <CirclePlus
-                    width={30}
-                    height={30}
-                    className="text-gray-500 group-hover:text-yellow-500 transition-colors duration-300"
-                  />
-                </motion.div>
-              )}
             </div>
-            {isTabExpanded && (
-              <motion.div
-                className="subcategories flex gap-4 mt-4 flex-wrap"
-                initial={{ y: 200 }}
-                animate={{
-                  y: 0,
-                  transition: { duration: 0.5 },
-                }}
-              >
-                {categories
-                  .find((category) => category.name === selectedTab)
-                  ?.subcategories.map((subcategory) => (
-                    <button
-                      key={subcategory}
-                      className={`px-4 py-2 bg-gray-200 text-black font-medium rounded ${
-                        selectedFilter === subcategory
-                          ? "border-2 border-black"
-                          : ""
-                      }`}
-                      onClick={() => setSelectedFilter(subcategory)}
-                    >
-                      {subcategory}
-                    </button>
-                  ))}
-              </motion.div>
-            )}
           </motion.div>
-        )}
-        {/* Render the selected component */}
-        {isTabExpanded && selectedTab && (
-          <motion.div
-            className="mt-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {
-              React.createElement(
-                categories.find((category) => category.name === selectedTab)
-                  ?.component,
-                { filter: selectedFilter } // Pass filter as prop
-              )
-            }
-          </motion.div>
-        )}
-      </motion.div>
+        </div>
+      )}
     </div>
   );
 };
