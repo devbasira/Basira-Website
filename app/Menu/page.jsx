@@ -6,7 +6,7 @@ const Menu = () => {
   // const [isTabExpanded, setIsTabExpanded] = useState(false);
   // const [selectedTab, setSelectedTab] = useState(null);
   // const [selectedFilter, setSelectedFilter] = useState(null);
-  const handleTabClick = (tab) => {
+  const handleTabClick = () => {
     // setIsTabExpanded(true);
     // setSelectedTab(tab);
     // setSelectedFilter(null);
