@@ -3,6 +3,7 @@ import React, { useState} from "react";
 import { CirclePlus } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+
 const CuratedCollectionComponent = ({ filter }) => (
   <div className="p-4 border rounded">
     <h3 className="text-xl font-bold">Curated Collection Component</h3>
@@ -30,7 +31,7 @@ const HomePage = () => {
     setIsExpanded((prev) => !prev);
   };
 
-  const handleTabClick = (tab) => {
+  const handleTabClick = () => {
    router.push('/Menu');
   };
 

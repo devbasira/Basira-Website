@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const Menu = () => {
-  const [isTabExpanded, setIsTabExpanded] = useState(false);
-  const [selectedTab, setSelectedTab] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState(null);
+  // const [isTabExpanded, setIsTabExpanded] = useState(false);
+  // const [selectedTab, setSelectedTab] = useState(null);
+  // const [selectedFilter, setSelectedFilter] = useState(null);
   const handleTabClick = (tab) => {
-    setIsTabExpanded(true);
-    setSelectedTab(tab);
-    setSelectedFilter(null);
+    // setIsTabExpanded(true);
+    // setSelectedTab(tab);
+    // setSelectedFilter(null);
   };
 
   const categories = [
