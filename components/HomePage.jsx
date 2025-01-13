@@ -82,7 +82,7 @@ const HomePage = () => {
           />
         </nav>
       )}
-      <div className="flex bg-red-200  flex-col justify-between font-bold items-start h-screen max-w-grid w-full">
+      <div className="flex bg-transparent  flex-col justify-between font-bold items-start h-screen max-w-grid w-full">
         {!isTabExpanded && (
           <motion.div
             className="main bg-transparent flex flex-col justify-center font-bold items-start h-full max-w-grid w-full px-4 sm:px-8 lg:px-40"
@@ -166,7 +166,7 @@ const HomePage = () => {
         )}
         {isExpanded && (
           <motion.div
-            className="flex flex-col justify-center font-bold items-start max-w-grid h-full w-full px-4 sm:px-8 lg:px-40"
+            className="flex bg-transparent flex-col justify-center font-bold items-start max-w-grid h-full w-full px-4 sm:px-8 lg:px-40"
             animate={{
               y: isTabExpanded
                 ? !isMobile
