@@ -23,9 +23,6 @@ const FinanceComponent = ({ filter }) => (
 
 const HomePage = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  // const [isTabExpanded, setIsTabExpanded] = useState(false);
-  // const [selectedTab, setSelectedTab] = useState(null);
-  // const [selectedFilter, setSelectedFilter] = useState(null);
   const router = useRouter();
   // const [isMobile, setIsMobile] = useState(false);
 
