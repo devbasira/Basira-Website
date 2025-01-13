@@ -1,8 +1,8 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { CirclePlus } from "lucide-react";
 import { motion } from "framer-motion";
-
+import { useRouter } from "next/navigation";
 const CuratedCollectionComponent = ({ filter }) => (
   <div className="p-4 border rounded">
     <h3 className="text-xl font-bold">Curated Collection Component</h3>
@@ -23,33 +23,32 @@ const FinanceComponent = ({ filter }) => (
 
 const HomePage = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isTabExpanded, setIsTabExpanded] = useState(false);
-  const [selectedTab, setSelectedTab] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
+  // const [isTabExpanded, setIsTabExpanded] = useState(false);
+  // const [selectedTab, setSelectedTab] = useState(null);
+  // const [selectedFilter, setSelectedFilter] = useState(null);
+  const router = useRouter();
+  // const [isMobile, setIsMobile] = useState(false);
 
   const handleClick = () => {
     setIsExpanded((prev) => !prev);
   };
 
   const handleTabClick = (tab) => {
-    setIsTabExpanded(true);
-    setSelectedTab(tab);
-    setSelectedFilter(null); // Reset filter when changing tabs
+   router.push('/Menu');
   };
 
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkIsMobile(); // Run on initial mount
-    window.addEventListener("resize", checkIsMobile); // Update on resize
-    return () => window.removeEventListener("resize", checkIsMobile); // Cleanup
-  }, []);
+  // useEffect(() => {
+  //   const checkIsMobile = () => {
+  //     setIsMobile(window.innerWidth <= 768);
+  //   };
+  //   checkIsMobile(); // Run on initial mount
+  //   window.addEventListener("resize", checkIsMobile); // Update on resize
+  //   return () => window.removeEventListener("resize", checkIsMobile); // Cleanup
+  // }, []);
 
   const categories = [
     {
-      name: "Curated Collection",
+      name: "About",
       subcategories: [
         "Customer Testimonials",
         "Fact Cards",
@@ -59,7 +58,7 @@ const HomePage = () => {
       component: CuratedCollectionComponent,
     },
     {
-      name: "Finance",
+      name: "Insights",
       subcategories: ["Lifestyle", "Technology"],
       component: FinanceComponent,
     },
@@ -143,8 +142,8 @@ const HomePage = () => {
         </motion.div>
       </motion.div>
       {isExpanded && (
-        <div className="flex justify-start items-center max-w-container w-full py-3 px-4">
-          <div className="w-1/6  flex justify-start">
+        <div className="flex justify-start w-full max-w-container items-center py-3 px-4">
+          <div className="flex w-1/6  justify-start">
           <motion.img
             initial={{ opacity: 0, x: 0 }}
             animate={{ opacity: 0.6, x: 0 }}
@@ -157,16 +156,12 @@ const HomePage = () => {
             className="z-100"
           />
           </div>
-          <motion.div className="flex ml-[60px] flex-col mt-6 items-start w-2/3">
-            <div className="tabs flex justify-center items-center gap-6 text-lg font-medium">
+          <motion.div className="flex flex-col mt-6 h-full items-center ">
+            <div className="tabs ml-[50%] flex justify-start w-full items-center gap-6 text-lg font-medium">
               {categories.map((category) => (
                 <button
                   key={category.name}
-                  className={`hover:text-gray-800 transition ${
-                    selectedTab === category.name
-                      ? "font-bold text-black"
-                      : "text-gray-600"
-                  }`}
+                  className={`text-black `}
                   onClick={() => handleTabClick(category.name)}
                 >
                   {category.name.toLowerCase()}{" "}
@@ -179,5 +174,4 @@ const HomePage = () => {
     </div>
   );
 };
-
 export default HomePage;
