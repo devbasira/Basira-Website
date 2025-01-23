@@ -3,24 +3,6 @@ import React, { useState, useEffect } from "react";
 import { CirclePlus } from "lucide-react";
 import { motion } from "framer-motion";
 
-const CuratedCollectionComponent = ({ filter }) => (
-  <div className="p-4 border rounded">
-    <h3 className="text-xl font-bold">Curated Collection Component</h3>
-    <p className="text-gray-600">
-      Currently selected filter: {filter || "None"}
-    </p>
-  </div>
-);
-
-const FinanceComponent = ({ filter }) => (
-  <div className="p-4 border rounded">
-    <h3 className="text-xl font-bold">Finance Component</h3>
-    <p className="text-gray-600">
-      Currently selected filter: {filter || "None"}
-    </p>
-  </div>
-);
-
 const HomePage = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTabExpanded, setIsTabExpanded] = useState(false);
@@ -35,7 +17,7 @@ const HomePage = () => {
   const handleTabClick = (tab) => {
     setIsTabExpanded(true);
     setSelectedTab(tab);
-    setSelectedFilter(null); // Reset filter when changing tabs
+    setSelectedFilter(null); 
   };
 
   useEffect(() => {
@@ -49,19 +31,18 @@ const HomePage = () => {
 
   const categories = [
     {
-      name: "Curated Collection",
+      name: "Insights",
       subcategories: [
-        "Customer Testimonials",
-        "Fact Cards",
-        "Idea Collection",
-        "Pitch Frameworks",
+       "blog",
+       "research",
+       "resources",
       ],
-      component: CuratedCollectionComponent,
+
     },
     {
-      name: "Finance",
-      subcategories: ["Lifestyle", "Technology"],
-      component: FinanceComponent,
+      name: "Work",
+      subcategories: ["case studies", "portfolio", "client stories"],
+
     },
   ];
 
@@ -166,25 +147,29 @@ const HomePage = () => {
         )}
         {isExpanded && (
           <motion.div
-            className="flex bg-transparent flex-col justify-center font-bold items-start max-w-grid h-full w-full px-4 sm:px-8 lg:px-40"
+            className="flex bg-transparent flex-col justify-center font-bold items-start max-w-grid h-auto w-full px-4 sm:px-8 lg:px-40"
             animate={{
               y: isTabExpanded
                 ? !isMobile
-                  ? -window.innerHeight * 0.4 
+                  ? -window.innerHeight * 0.1
                   : 350
                 : 0,
               transition: { duration: 0.5 },
             }}
+            style = {{
+              "marginTop" : isTabExpanded ? '0px' : '10px',
+              "marginBottom" : isTabExpanded ? '0px' : '30px'
 
+            }}
           >
             <div className="tabs items-center flex gap-4">
               {categories.map((category) => (
                 <button
                   key={category.name}
-                  className={`px-4 py-2 font-bold rounded ${
+                  className={`px-4 py-2 font-bold text-xl text-start w-[150px]  ${
                     selectedTab === category.name
-                      ? "bg-black text-white"
-                      : "bg-gray-200 text-black"
+                      ? "text-black"
+                      : "text-gray-400"
                   }`}
                   onClick={() => handleTabClick(category.name)}
                 >
@@ -196,11 +181,11 @@ const HomePage = () => {
                   onClick={() => {
                     setIsTabExpanded(false);
                   }}
-                  className="group flex items-center cursor-pointer mt-2"
+                  className="group flex items-center cursor-pointer"
                 >
                   <CirclePlus
-                    width={30}
-                    height={30}
+                    width={20}
+                    height={20}
                     className="text-gray-500 group-hover:text-yellow-500 transition-colors duration-300"
                   />
                 </motion.div>
@@ -208,7 +193,7 @@ const HomePage = () => {
             </div>
             {isTabExpanded && (
               <motion.div
-                className="subcategories flex gap-4 mt-4 flex-wrap"
+                className="subcategories flex gap-4 flex-wrap"
                 initial={{ y: 200 }}
                 animate={{
                   y: 0,
@@ -220,30 +205,16 @@ const HomePage = () => {
                   ?.subcategories.map((subcategory) => (
                     <button
                       key={subcategory}
-                      className={`px-4 py-2 bg-gray-200 text-black font-medium rounded ${
+                      className={`px-4 text-lg py-1 w-[150px] text-start  font-bold ${
                         selectedFilter === subcategory
-                          ? "border-2 border-black"
-                          : ""
+                          ? "text-black"
+                          : "text-gray-400"
                       }`}
                       onClick={() => setSelectedFilter(subcategory)}
                     >
                       {subcategory}
                     </button>
                   ))}
-              </motion.div>
-            )}
-            {isTabExpanded && selectedTab && (
-              <motion.div
-                className="mt-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                {React.createElement(
-                  categories.find((category) => category.name === selectedTab)
-                    ?.component,
-                  { filter: selectedFilter } // Pass filter as prop
-                )}
               </motion.div>
             )}
           </motion.div>
