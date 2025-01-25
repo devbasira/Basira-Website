@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { CirclePlus } from "lucide-react";
 import { motion } from "framer-motion";
+import Projects from "./Projects";
 
 const HomePage = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -66,7 +67,7 @@ const HomePage = () => {
       <div className="flex bg-transparent  flex-col justify-between font-bold items-start h-screen max-w-grid w-full">
         {!isTabExpanded && (
           <motion.div
-            className="main bg-transparent flex flex-col justify-center font-bold items-start h-full max-w-grid w-full px-4 sm:px-8 lg:px-40"
+            className="main bg-transparent flex flex-col justify-center font-bold items-start h-full max-w-grid w-full px-4 sm:px-8 lg:px-[80px]"
             animate={{
               y: isExpanded ? -100 : 0,
               gap: isExpanded ? 0 : 20,
@@ -147,7 +148,7 @@ const HomePage = () => {
         )}
         {isExpanded && (
           <motion.div
-            className="flex bg-transparent flex-col justify-center font-bold items-start max-w-grid h-auto w-full px-4 sm:px-8 lg:px-40"
+            className="flex bg-transparent flex-col justify-center font-bold items-start max-w-grid h-auto w-full px-4 sm:px-8 lg:px-[80px]"
             animate={{
               y: isTabExpanded
                 ? !isMobile
@@ -219,6 +220,9 @@ const HomePage = () => {
             )}
           </motion.div>
         )}
+        {
+          (isTabExpanded && selectedTab == 'Work') && <Projects />
+        }
       </div>
     </div>
   );
