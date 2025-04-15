@@ -8,7 +8,6 @@ const HomePage = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTabExpanded, setIsTabExpanded] = useState(false);
   const [selectedTab, setSelectedTab] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
   const handleClick = () => {
@@ -18,7 +17,6 @@ const HomePage = () => {
   const handleTabClick = (tab) => {
     setIsTabExpanded(true);
     setSelectedTab(tab);
-    setSelectedFilter(null);
   };
 
   useEffect(() => {
@@ -217,32 +215,6 @@ const HomePage = () => {
                 </motion.div>
               )}
             </div>
-            {/* {isTabExpanded && (
-              <motion.div
-                className="subcategories flex gap-4 flex-wrap"
-                initial={{ y: 200 }}
-                animate={{
-                  y: 0,
-                  transition: { duration: 0.5 },
-                }}
-              >
-                {categories
-                  .find((category) => category.name === selectedTab)
-                  ?.subcategories.map((subcategory) => (
-                    <button
-                      key={subcategory}
-                      className={`px-4 text-lg py-1 w-[150px] text-start  font-bold ${
-                        selectedFilter === subcategory
-                          ? "text-black"
-                          : "text-gray-400"
-                      }`}
-                      onClick={() => setSelectedFilter(subcategory)}
-                    >
-                      {subcategory}
-                    </button>
-                  ))}
-              </motion.div>
-            )} */}
           </motion.div>
         )}
         {
