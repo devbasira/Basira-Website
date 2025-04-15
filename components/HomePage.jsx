@@ -18,7 +18,7 @@ const HomePage = () => {
   const handleTabClick = (tab) => {
     setIsTabExpanded(true);
     setSelectedTab(tab);
-    setSelectedFilter(null); 
+    setSelectedFilter(null);
   };
 
   useEffect(() => {
@@ -32,17 +32,17 @@ const HomePage = () => {
 
   const categories = [
     {
-      name: "Insights",
-      subcategories: [
-       "blog",
-       "research",
-       "resources",
-      ],
+      name: "Work",
+      subcategories: ["case studies", "portfolio", "client stories"],
 
     },
     {
-      name: "Work",
-      subcategories: ["case studies", "portfolio", "client stories"],
+      name: "Insights",
+      subcategories: [
+        "blog",
+        "research",
+        "resources",
+      ],
 
     },
   ];
@@ -50,14 +50,14 @@ const HomePage = () => {
   return (
     <div className="relative h-screen overflow-y-automax-w-container w-full flex flex-col items-center justify-center">
       {isExpanded && (
-        <nav className="z-100 flex justify-start max-w-container items-center w-full h-32 px-6">
+        <nav className="z-100  flex justify-start max-w-container items-center w-full h-32 px-6">
           <motion.img
             initial={{ opacity: 0, x: 0 }}
             animate={{ opacity: 0.6, x: 0 }}
             transition={{ duration: 0.5 }}
             whileHover={{ opacity: 1 }}
             alt="Logo"
-            src={"/Basira_Logo_Black.svg"}
+            src={"/Basira_Logo_Color.svg"}
             width={200}
             height={100}
             className="z-100"
@@ -77,21 +77,48 @@ const HomePage = () => {
               gap: isExpanded ? "10px" : "20px",
             }}
           >
-            {!isTabExpanded && (
-              <motion.h1
-                className="text-[40px] lg:text-[100px] bg-transparent"
+            <div className="relative">
+              <motion.div
+                className="flex items-start overflow-hidden"
                 animate={{
-                  scale: isExpanded ? 0.7 : 1,
-                  transition: { duration: 0.5 },
+                  height: isExpanded ? 200 : 'auto',
                 }}
-                style={{
-                  transformOrigin: "left top",
-                  marginTop: isExpanded ? "50px" : "0px",
-                }}
+                transition={{ duration: 0.3 }}
               >
-                make things easy
-              </motion.h1>
-            )}
+                <motion.h1
+                  className="text-[40px] lg:text-[120px] bg-transparent"
+                  animate={{
+                    scale: isExpanded ? 0.7 : 1,
+                    transition: { duration: 0.5 },
+                  }}
+                  style={{
+                    transformOrigin: "left top",
+                    marginTop: isExpanded ? "50px" : "0px",
+                  }}
+                >
+                  make things easy
+                </motion.h1>
+              </motion.div>
+
+              {/* {!isTabExpanded && (
+                <motion.div
+                  onClick={handleClick}
+                  animate={{
+                    scale: isExpanded ? 0.7 : 1,
+                    transition: { duration: 0.5 },
+                  }}
+                  className="absolute -right-6 -top-6 rotate-45 cursor-pointer"
+                >
+                  <CirclePlus
+                    width={50}
+                    height={50}
+                    className="text-gray-500 bg-blue-200 group-hover:text-yellow-500 transition-colors duration-300 rounded-full p-1 rotate-[-45deg]"
+                  />
+                </motion.div>
+              )} */}
+            </div>
+
+
             {!isTabExpanded && (
               <motion.div
                 onClick={handleClick}
@@ -111,28 +138,26 @@ const HomePage = () => {
             )}
             {isExpanded && !isTabExpanded && (
               <motion.div
-                className="inner flex flex-col gap-[10px]"
+                className="inner mt-[20px] lg:w-[820px] flex flex-col gap-[15px]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <h3 className="text-yellow-500 text-xl sm:text-2xl">
+                <h3 className="text-yellow-500 text-2xl sm:text-2xl">
                   curiosity is our compass.
                 </h3>
-                <p className="font-light text-sm sm:text-base">
-                  Curiosity is the driving force behind everything we do. We
-                  constantly ask “why”—challenging assumptions, questioning
-                  processes, and exploring possibilities. Before we share what
-                  we stand for, we believe it’s important to understand why our
-                  principles matter.
+                <p className="font-light text-lg">
+                  Curiosity is the driving force behind everything we do.
+                  At Basira, curiosity drives everything we do. By questioning
+                  assumptions and exploring possibilities, we focus on understanding
+                  the “why” behind our principles.
                   <br />
-                  Principles, to us, are more than ideals. They are actionable
-                  frameworks that shape our decisions and behaviors, even in the
-                  face of complexity or change. They provide a steady foundation
-                  that keeps us grounded while enabling adaptability.
+                  To us, principles are actionable frameworks that guide decisions, simplify complexity, and turn challenges into clarity and order.
+                  Anchored by our belief in making things easy for everyone, we ensure
+                  our strategies and solutions are clear, practical, and impactful.
                   <br />
-                  But principles don’t just guide—they simplify. They transform
+                  {/* But principles don’t just guide—they simplify. They transform
                   complexity into clarity, chaos into order, and big challenges
                   into achievable goals.
                   <br />
@@ -140,7 +165,7 @@ const HomePage = () => {
                   unwavering belief: Make things easy for everyone. This
                   principle shapes everything we do—from the strategies we
                   develop to the solutions we deliver—ensuring they are clear,
-                  practical, and impactful.
+                  practical, and impactful. */}
                 </p>
               </motion.div>
             )}
@@ -148,30 +173,30 @@ const HomePage = () => {
         )}
         {isExpanded && (
           <motion.div
-            className="flex bg-transparent flex-col justify-center font-bold items-start max-w-grid h-auto w-full px-4 sm:px-8 lg:px-[80px]"
+            className="flex bg-transparent justify-start font-bold items-center max-w-grid h-auto w-full px-4 lg:px-[48px]"
             animate={{
               y: isTabExpanded
                 ? !isMobile
-                  ? -window.innerHeight * 0.1
+                  ? -window.innerHeight * 0.08
                   : 350
                 : 0,
               transition: { duration: 0.5 },
             }}
-            style = {{
-              "marginTop" : isTabExpanded ? '0px' : '10px',
-              "marginBottom" : isTabExpanded ? '0px' : '30px'
+            style={{
+              "marginTop": isTabExpanded ? '0px' : '30px',
+              "marginBottom": isTabExpanded ? '0px' : '30px'
 
             }}
           >
+          
             <div className="tabs items-center flex gap-4">
               {categories.map((category) => (
                 <button
                   key={category.name}
-                  className={`px-4 py-2 font-bold text-xl text-start w-[150px]  ${
-                    selectedTab === category.name
-                      ? "text-black"
-                      : "text-gray-400"
-                  }`}
+                  className={`px-4 py-2 font-bold text-xl text-start w-[150px]  ${selectedTab === category.name
+                    ? "text-black"
+                    : "text-gray-400"
+                    }`}
                   onClick={() => handleTabClick(category.name)}
                 >
                   {category.name}
@@ -192,7 +217,7 @@ const HomePage = () => {
                 </motion.div>
               )}
             </div>
-            {isTabExpanded && (
+            {/* {isTabExpanded && (
               <motion.div
                 className="subcategories flex gap-4 flex-wrap"
                 initial={{ y: 200 }}
@@ -217,7 +242,7 @@ const HomePage = () => {
                     </button>
                   ))}
               </motion.div>
-            )}
+            )} */}
           </motion.div>
         )}
         {
